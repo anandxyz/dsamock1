@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void moveZeroes(vector<int>& nums) {
+    int n = nums.size();
+    int zeroCount = 0;
+
+    // Count the number of zeros and move non-zero elements to the front
+    for (int i = 0; i < n; i++) {
+        if (nums[i] == 0) {
+            zeroCount++;
+        } else {
+            nums[i - zeroCount] = nums[i];
+        }
+    }
+
+    // Fill the end of the array with zeros
+    for (int i = n - zeroCount; i < n; i++) {
+        nums[i] = 0;
+    }
+}
+
+// Function to print the elements of an array
+void printArray(const vector<int>& nums) {
+    for (int num : nums) {
+        cout << num << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    vector<int> nums1 = {0, 1, 0, 3, 12};
+    cout << "Original Array: ";
+    printArray(nums1);
+    moveZeroes(nums1);
+    cout << "Modified Array: ";
+    printArray(nums1);
+
+    vector<int> nums2 = {0};
+    cout << "Original Array: ";
+    printArray(nums2);
+    moveZeroes(nums2);
+    cout << "Modified Array: ";
+    printArray(nums2);
+
+    return 0;
+}
